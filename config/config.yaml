@@ -1,0 +1,50 @@
+project:
+  name: fhir_medallion
+  catalog: workspace
+
+api:
+  base_url: https://hapi.fhir.org/baseR4
+  format: json                 
+  accept_headers:
+    json: application/fhir+json
+    xml: application/fhir+xml
+  page_size: 100               # FHIR _count parameter
+  max_pages_per_run: 10        # safety cap per resource (protects free-tier quota)
+  timeout_seconds: 60
+  max_retries: 3
+  backoff_seconds: 2
+  request_delay_seconds: 0.5   
+  incremental_param: _lastUpdated
+
+storage:
+  raw_volume:
+    schema: raw
+    name: fhir
+  layers:
+    bronze: bronze
+    silver: silver
+    gold: gold
+    meta: meta
+
+# pipeline order (Patient -> Encounter -> Observation -> Condition)
+resources:
+  - name: Patient
+    folder: patient
+    table: patient
+    id_column: id
+  - name: Encounter
+    folder: encounter
+    table: encounter
+    id_column: id
+  - name: Observation
+    folder: observation
+    table: observation
+    id_column: id
+  - name: Condition
+    folder: condition
+    table: condition
+    id_column: id
+
+meta_tables:
+  run_log: pipeline_run_log
+  watermark: watermark
