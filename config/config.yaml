@@ -9,7 +9,7 @@ api:
     json: application/fhir+json
     xml: application/fhir+xml
   page_size: 100               # FHIR _count parameter
-  max_pages_per_run: 10        # safety cap per resource (protects free-tier quota)
+  max_pages_per_run: 30        # safety cap per resource (protects free-tier quota)
   timeout_seconds: 60
   max_retries: 3
   backoff_seconds: 2
