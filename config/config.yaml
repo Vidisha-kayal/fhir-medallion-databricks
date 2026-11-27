@@ -32,18 +32,22 @@ resources:
     folder: patient
     table: patient
     id_column: id
+    silver_key: patient_id
   - name: Encounter
     folder: encounter
     table: encounter
     id_column: id
+    silver_key: encounter_id
   - name: Observation
     folder: observation
     table: observation
     id_column: id
+    silver_key: observation_id
   - name: Condition
     folder: condition
     table: condition
     id_column: id
+    silver_key: condition_id
 
 meta_tables:
   run_log: pipeline_run_log
