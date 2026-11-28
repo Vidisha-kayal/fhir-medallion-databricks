@@ -57,3 +57,7 @@ incremental:
   initial_start_date: "2026-11-24"   # first day to load when a resource has no watermark yet
   safety_lag_minutes: 30             # wait this long after midnight UTC before a day counts as complete
   max_days_per_run: 7                # catch-up cap so one run can't use up the free quota
+
+gold:
+  date_dim_start: "2020-01-01"
+  date_dim_end: "2030-12-31"
